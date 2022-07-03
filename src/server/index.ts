@@ -1,26 +1,44 @@
 // @ts-nocheck
-import fastify from 'fastify'
 
-const server = fastify()
+// Always on top to ensure, that fastify is present
+import fastify from "fastify";
+import fastifyJwt from "@fastify/jwt";
+const server = fastify();
+global.fastify = server;
 
-server.get('/ping', async (request, reply) => {
-  return 'pong12jewfijewij3\n'
-})
+import * as glob from "@server/utils/global";
+global.handleHttpRequest = glob.handleHttpRequest;
 
-function setup(){
+import { routing } from "./services/routing/routing";
+import { middleware } from "./middleware/index";
+import { store } from "./services/store/store";
 
-  server.listen({ port: 8080 }, (err, address) => {
-    if (err) {
-      console.error(err)
-      process.exit(1)
+
+store.push("fastify", server);
+
+function setup() {
+    registerPlugins(server);
+    middleware();
+    routing();
+
+    server.listen({ port: 8080 }, (err, address) => {
+        if (err) {
+            console.error(err);
+            process.exit(1);
+        }
+        console.log(`Server listening at ${address}`);
+    });
+
+    // Hot reloading
+    if (module.hot) {
+        module.hot.accept();
+        module.hot.dispose(() => server.close());
     }
-    console.log(`Server listening at ${address}`)
-  })
-
-  // Hot reloading
-  if (module.hot) {
-    module.hot.accept();
-    module.hot.dispose(() => app.close());
-  }
 }
 setup();
+
+function registerPlugins(server) {
+    server.register(fastifyJwt, {
+        secret: "secret",
+    });
+}

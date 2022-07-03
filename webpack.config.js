@@ -29,6 +29,10 @@ module.exports = {
   },
   mode: 'development',
   resolve: {
+    alias: {
+      // add as many aliases as you like! 
+      "@server": path.resolve(__dirname, 'src/server') 
+    },
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
