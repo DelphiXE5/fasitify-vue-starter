@@ -5,11 +5,11 @@
     "esModuleInterop": true,
     "outDir": "out/build/server",
     "target": "es2022",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@server/*": ["server/*"]
+      "@server/*": ["./*"]
     },
-    "typeRoots": ["./server/@types"]
+    "typeRoots": ["./@types"]
   },
-  "include": ["src/**/*"],
+  "include": ["**/*"],
 }
