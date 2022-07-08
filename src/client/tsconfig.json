@@ -10,7 +10,8 @@
 
   "references": [
     {
-      "path": "./tsconfig.config.json"
+      "path": "../tsconfig.config.json"
     }
-  ]
+  ],
+  "typeRoots": ["./src/shims"]
 }
