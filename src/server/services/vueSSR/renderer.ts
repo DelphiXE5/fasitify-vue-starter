@@ -1,3 +1,5 @@
+// Used from https://github.com/fastify/fastify-vite/blob/dev/examples/vue-next/renderer.js
+
 // Vue 3's non-streaming server-side rendering function
 import { renderToString } from '@vue/server-renderer'
 

@@ -17,9 +17,4 @@ export const routes = [
   }
 ]
 
-const router = createRouter({
-  history: createMemoryHistory(import.meta.env.BASE_URL),
-  routes: routes
-})
-
-export default router
+export default routes

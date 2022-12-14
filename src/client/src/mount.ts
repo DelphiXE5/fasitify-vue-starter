@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { createApp } from './main.js'
+import { createApp } from './main'
 
 createApp(window.hydration)
   .then(({ instance, router }) => {
