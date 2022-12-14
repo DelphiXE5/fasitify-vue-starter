@@ -2,9 +2,10 @@ const webpack = require('webpack');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const { RunScriptWebpackPlugin } = require('run-script-webpack-plugin');
+const ESMLoader = require("./webpack/ESMLoader")
 
 module.exports = {
-  target: 'node',
+  target: 'node16.0',
   entry: ['webpack/hot/poll?100', './src/server/index.ts'], // make sure this matches the main root of your code 
   output: {
     path: path.join(__dirname, 'out/bundle/server'), // this can be any path and directory you want
@@ -38,6 +39,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new RunScriptWebpackPlugin({ name: 'server.js' }),
+    new ESMLoader({ esmPackages: "ky-universal" }),
   ],
   devtool: 'source-map'
 };

@@ -22,6 +22,7 @@
         "devalue": "^2.0.1",
         "fastify": "^4.1.0",
         "fastify-vite": "^3.0.0-beta.23",
+        "ky-universal": "^0.11.0",
         "prisma": "^4.0.0",
         "vue": "^3.2.37",
         "vue-router": "^4.0.16"

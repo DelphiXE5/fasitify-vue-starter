@@ -1,20 +1,26 @@
-import { createMemoryHistory, createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import type { RouteRecordRaw } from 'vue-router'
 
-export const routes = [
+
+export const routes = routePostProcess([
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: Object.values(import.meta.globEager('../views/HomeView.vue'))[0],
   },
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import('../views/AboutView.vue')
+    component: Object.values(import.meta.globEager('../views/AboutView.vue'))[0],
   }
-]
+]);
 
 export default routes
+
+function routePostProcess(routes: any[]): RouteRecordRaw[] {
+
+  return routes.map<any>(route => {
+    route.getServerSideProps = route.component.getServerSideProps;
+    route.component = route.component.default;
+    return route;
+  });
+}

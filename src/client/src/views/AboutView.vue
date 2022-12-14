@@ -1,8 +1,18 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>This is an about page <p>{{$serverSideProps.user}}</p></h1>
   </div>
 </template>
+
+<script>
+
+export async function getServerSideProps ({ ky }) {
+  return {
+    user: await ky('api/images').json()
+  }
+}
+
+</script>
 
 <style>
 @media (min-width: 1024px) {

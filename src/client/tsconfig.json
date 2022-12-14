@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "lib": ["es2019"]
   },
 
   "references": [
@@ -13,5 +14,5 @@
       "path": "../tsconfig.config.json"
     }
   ],
-  "typeRoots": ["./src/shims"]
+  "typeRoots": ["./src/shims"],
 }
