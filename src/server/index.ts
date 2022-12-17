@@ -5,7 +5,7 @@ const BASE_URL = "http://localhost:8080/"
 // Always on top to ensure, that fastify is present
 import fastify from "fastify";
 import fastifyJwt from "@fastify/jwt";
-import FastifyVite from 'fastify-vite';
+import FastifyVite from '@fastify/vite';
 import { Log } from "@server/utils/log";
 const server = fastify();
 global.fastify = server;
@@ -56,16 +56,11 @@ async function registerPlugins(server) {
     await server.register(fastifyJwt, {
         secret: "secret",
     });
-    console.log(import.meta.url.replace("server/index.ts", ""));
-    try {
-        await server.register(FastifyVite, {
-            renderer,
-            dev: true,
-            clientModule: "src/index.ts",
-            root: import.meta.url.replace("server/index.ts", ""),
-        })
-    }
-    catch(e){
-        Logger.log(e);
-    }
+
+    await server.register(FastifyVite, {
+        renderer,
+        dev: false,
+        // clientModule: "index.ts",
+        root: import.meta.url.replace("server/index.ts", ""),
+    })
 }

@@ -1,5 +1,5 @@
-import { createApp } from "./main.js";
-import { routes } from "./router/index";
+import { createApp } from "./src/main";
+import { routes } from "./src/router/index";
 
 export default {
     // Provides client-side navigation routes to server
