@@ -10,7 +10,8 @@
         "type-check": "vue-tsc --noEmit",
         "build:ssr": "npm run build:ssr:client && npm run build:ssr:server",
         "build:ssr:server": "cd ./src && vite build --outDir ../../out/server --ssr ./index.ts",
-        "build:ssr:client": "cd ./src && vite build --outDir ../../out/client --ssrManifest"
+        "build:ssr:client": "cd ./src && vite build --outDir ../../out/client --ssrManifest",
+        "migrate": "prisma migrate dev"
 
     },
     "keywords": [],
