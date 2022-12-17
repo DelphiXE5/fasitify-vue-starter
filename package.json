@@ -4,11 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "bundle:server": "webpack",
+        "build:server": "webpack --config webpack.config.prod.js",
         "dev": "webpack --watch",
-        "preview": "vite preview --port 4173",
-        "build-only": "vite build",
+        "start": "node ./out/fastify/server.js",
         "type-check": "vue-tsc --noEmit",
         "build:ssr": "npm run build:ssr:client && npm run build:ssr:server",
         "build:ssr:server": "cd ./src && vite build --outDir ../../out/server --ssr ./index.ts",
